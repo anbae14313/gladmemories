@@ -11,7 +11,8 @@
     button { background: #ff9800; cursor: pointer; }
     #gallery { display: none; padding: 20px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-    .grid img { width: 100%; border-radius: 8px; }
+    .grid img, .grid video { width: 100%; border-radius: 8px; }
+    #videoBox { display: none; }
   </style>
 </head>
 <body>
@@ -25,23 +26,43 @@
 
 <div id="gallery">
   <h1>🎓 My College Memories</h1>
-  <div class="grid">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-    <img src="photo5.jpg">
-    <img src="photo6.jpg">
+  <div class="grid" id="photos"></div>
+
+  <div id="videoBox">
+    <h2>🎬 Video Clips</h2>
+    <div class="grid" id="videos"></div>
   </div>
 </div>
 
 <script>
+  const PHOTOS = 7;
+  const VIDEOS = 5;
+
   function check() {
-    if (document.getElementById("pw").value === "gladyyy") {
+    if (document.getElementById("pw").value === "college123") {
       document.getElementById("lock").style.display = "none";
       document.getElementById("gallery").style.display = "block";
+      load();
     } else {
       document.getElementById("msg").innerText = "Wrong password ❌";
+    }
+  }
+
+  function load() {
+    for (let i = 1; i <= PHOTOS; i++) {
+      const img = new Image();
+      img.src = "photo" + i + ".jpg";
+      img.onload = () => document.getElementById("photos").appendChild(img);
+    }
+    for (let i = 1; i <= VIDEOS; i++) {
+      const v = document.createElement("video");
+      v.src = "video" + i + ".mp4";
+      v.controls = true;
+      v.preload = "metadata";
+      v.onloadedmetadata = () => {
+        document.getElementById("videoBox").style.display = "block";
+        document.getElementById("videos").appendChild(v);
+      };
     }
   }
 </script>
