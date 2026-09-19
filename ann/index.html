@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College Memories</title>
+  <style>
+    body { margin: 0; font-family: Arial; background: #111; color: #fff; text-align: center; }
+    #lock { margin-top: 30vh; }
+    input, button { padding: 10px; font-size: 16px; border-radius: 6px; border: none; }
+    button { background: #ff9800; cursor: pointer; }
+    #gallery { display: none; padding: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    .grid img { width: 100%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<div id="lock">
+  <h2>🔒 Enter Password</h2>
+  <input type="password" id="pw" placeholder="Password">
+  <button onclick="check()">Open</button>
+  <p id="msg"></p>
+</div>
+
+<div id="gallery">
+  <h1>🎓 My College Memories</h1>
+  <div class="grid">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+  </div>
+</div>
+
+<script>
+  function check() {
+    if (document.getElementById("pw").value === "gladyyy") {
+      document.getElementById("lock").style.display = "none";
+      document.getElementById("gallery").style.display = "block";
+    } else {
+      document.getElementById("msg").innerText = "Wrong password ❌";
+    }
+  }
+</script>
+
+</body>
+</html>
